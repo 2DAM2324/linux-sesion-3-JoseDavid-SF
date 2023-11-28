@@ -1,0 +1,40 @@
+﻿1.- QT_ACCESSIBILITY=1, COLORTERM=truecolor, SSH_AGENT_LAUNCHER=gnome-keyring, LOGNAME=josedavid, XDG_SESSION_TYPE=wayland
+
+2.- NOMBRE solo se puede ver en el primer shell, el shell "padre", al cambiar al shell "hijo" no podemos ver la variable que se había definido en el padre, porque no se ha exportado. Se podría solucionar con el comando: "export NOMBRE".
+
+3.- Al poner las comillas dobles después de los dos puntos, la orden sigue funcionando. Si cambio las comillas dobles por las simples la orden deja de funcionar, y se muestra por pantalla: "Los archivos que hay en el directorio son: $(ls -l)"
+
+4.- Todo se ha convertido en carácter, y no se ha realizado la operación
+matemática que deseábamos. La solución a este problema viene de la mano de la orden del sistema "expr".
+
+5.- !#/bin/bash
+touch hola.sh
+nano hola.sh, escribo: echo "Hola, $1", guardo el archivo y salgo
+chmod +x hola.sh
+./hola.sh Jose
+
+6.- nano hola.sh, escribo: echo "Hola, $*", guardo el archivo y salgo
+./hola.sh Jose Ramon Ana Manolo, se muestra por pantalla: Hola, Jose Ramon Ana Manolo
+
+7.- a) VAR1="hola", VAR2="adios", VAR3="14"
+printf "%-15q %-15q %-15d\n" $VAR1 $VAR2 $VAR3
+b) Son variables locales
+c) Se borra con el comando: unset VAR2
+d) No se pueden visualizar, ya que son variables locales como he dicho anteriormente.
+e) Vuelvo a crear la VAR2, y ejecuto el comando: vector=($VAR1 $VAR2 $VAR3)
+f) Ejecuto el comando: echo ${vector[1]} y se muestra por pantalla: adios
+
+8.- alias ne='ls -l | wc -l' y para el directorio home: alias ne='ls ~ -l | wc -l'
+
+9.- find ~ -size -1 y para que se imprima el resultado en un archivo llamado archivosP: find ~ -size -1 > archivosP
+
+10.- grep ejemplo *
+
+11.- (No entiendo bien cómo hacerlo)
+
+12.- cat /etc/passwd | grep usuario
+
+13.- find ~ ! -perm -o+r | wc -l
+Devuelve como resultado: 3865
+
+14.- echo numE.sh, nano numE.sh, escribo dentro de numE.sh: ls -1 $1 | wc -l, guardo y cierro, chmod +x numE.sh, ./numE.sh
